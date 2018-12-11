@@ -32,7 +32,7 @@
                          <option value="all">
                            All
                          </option>
-                          <option v-for="country of countries" v-bind:value="countryOption">{{country.value}}</option>
+                          <option v-for="country of countries" v-bind:value="countryOption">{{country.name}}</option>
                         </select>
                       </label>
                       <label for="indicatorDropdown">Indicator:
@@ -40,7 +40,7 @@
                           <option>
                             Choose your Indicator
                           </option>
-                           <option v-for="indicator of indicators" v-bind:value="v">{{indicator.value}}</option>
+                           <option v-for="indicator of indicators" v-bind:value="v">{{indicator.name}}</option>
                          </select>
                        </label>
                        <label for="yearDropdown">Year:
