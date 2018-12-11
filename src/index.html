@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+</html>
+  <head>
+    <meta charset="utf-8" />
+    <title>World Bank Development Data Retriever tool</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Borrowed tweet interface from:
+    https://medium.freecodecamp.org/vue-js-introduction-for-people-who-know-just-enough-jquery-to-get-by-eab5aa193d77"-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">World Bank Development Data Retriever Tool</a>
+      </nav>
+      <div class="row" style="margin:5px">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row box-margin">
+                <div class="col-md-12">
+                  <form id="searchCriteriaForm">
+                     <label for="searchTextBox">Keyword:
+                       <input class="form-control mr-sm-2" type="search" placeholder="Search for Data Set" aria-label="Search" v-model="searchText">
+                     </label>
+                     <label for="countryDropdown">Country:
+                       <select class="form-control" id="countryDropdown" v-model="countryOption" value="Choose your Country" required>
+                         <option value="all">
+                           All
+                         </option>
+                          <option v-for="country of countries" v-bind:value="country">{{country}}</option>
+                        </select>
+                      </label>
+                      <label for="indicatorDropdown">Indicator:
+                        <select class="form-control" id="indicatorDropdown" v-model="indicatorOption" value="Choose your Country" required>
+                          <option>
+                            Choose your Indicator
+                          </option>
+                           <option v-for="country of countries" v-bind:value="country">{{country}}</option>
+                         </select>
+                       </label>
+                       <label for="yearDropdown">Year:
+                         <select class="form-control" id="indicatorDropdown" v-model="yearOption" value="Choose your Country" required>
+                           <option>
+                             Choose your Year
+                           </option>
+                            <option v-for="i in (1967,2018)" v-bind:value="country">{{i}}</option>
+                          </select>
+                        </label>
+                     </form>
+                  </div>
+              </div>
+              <div class="row box-margin">
+                <div class="col-md-3 offset-md-9">
+                  <button class="btn btn-outline-primary" type="submit" v-on:click="searchForArtists">Search</button>
+                </div>
+              </div>
+              <div class="row box-margin">
+                <div class="col-md-12">
+                  <div class="alert alert-danger fade show" role="alert" v-show="noResults">
+                    <strong>Not Found:</strong> Results matching your search not found.
+                  </div>
+                </div>
+              </div>
+              <div class="row box-margin">
+                <div class="col-md-12">
+                  <table class="table table-bordered">
+                      <th>
+                       Data Set ID
+                      </th>
+                      <th>
+                       Country
+                      </th>
+                      <th>
+                       Indicator
+                      </th>
+                      <th>
+                       Year
+                      </th>
+                      <tr v-for="(event, index) in events">
+                       <td>
+                         {{index + 1}}
+                       </td>
+                       <td>
+                         <a href="event.url">{{event.name}}</a>
+                       </td>
+                       <td>
+                         {{event._embedded.venues.name}}
+                       </td>
+                       <td>
+                         {{event.dates.start.localDate}}
+                       </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="assets/js/index.js"></script>
+</html>
