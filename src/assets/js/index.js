@@ -1,5 +1,4 @@
 const BASE_URL = 'http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?date=2000:2001';
-
 var dataSetSearch = new Vue({
   el: '#searchCriteriaForm',
   data:{
@@ -25,23 +24,17 @@ var dataSetSearch = new Vue({
         "SC","SD", "TN","TX", "UT","VT","VI", "VA","WA", "WV","WI", "WY"],
       indicators: []
   },
-  computed: {
-    searchForArtist: function(){
-      let events = this.results, searchText = this.searchText;
+  mounted() {
+      axios.get('./assets/json/countries.json').then(response => this.countries = response);
+      console.log("here");
 
-      if(!searchText){
-        return results;
-      }
-
-      return results;
-    }
   },
 
   methods: {
     searchForDataSet: function(){
       this.results = [];
       axios
-      .get("http://dataservices.imf.org/REST/SDMX_JSON.svc")
+      .get("http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?date=2000:2001")
       .then(response => this.results = response)
       .catch(error => console.log('error') );
 
