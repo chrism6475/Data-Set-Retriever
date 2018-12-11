@@ -7,25 +7,15 @@ var dataSetSearch = new Vue({
       countryOption: '',
       yearOption: '',
       test: "test",
-      results:[{ name: "First Data Set",
-                year: 1969,
-                indicator: "GDP",
-                url: "here"},
-                {
-                  name: "Second Data Set",
-                          year: 1969,
-                          indicator: "GDP",
-                          url: "here"},
-              ],
+      results:[],
       indicatorOption: '',
       countries: [],
-      indicators: []
+      indicators: [],
+      resultsInfo: []
   },
   mounted() {
-      console.log("here");
-      axios.get('./assets/json/countries.json').then(response => this.countries = response);
-      console.log("here");
-      axios.get('./assets/json/indicators.json').then(response => this.indicators = response);
+      axios.get('./assets/json/countries.json').then(response => this.countries = response.data);
+      axios.get('./assets/json/indicators.json').then(response => this.indicators = response.data);
 
   },
 
@@ -33,11 +23,14 @@ var dataSetSearch = new Vue({
     searchForDataSet: function(){
       this.results = [];
       axios
-      .get("http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?date=2000:2001")
-      .then(response => this.results = response)
+      .get("http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?format=json")
+      .then(response => {
+        this.resultsInfo = response.data[0];
+        this.results = response.data[1];
+        console.log(this.results);
+      })
       .catch(error => console.log('error') );
 
-      console.log(this.events);
     }
   }
 });

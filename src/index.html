@@ -32,7 +32,7 @@
                          <option value="all">
                            All
                          </option>
-                          <option v-for="country of countries" v-bind:value="countryOption">{{country}}</option>
+                          <option v-for="country of countries" v-bind:value="countryOption">{{country.value}}</option>
                         </select>
                       </label>
                       <label for="indicatorDropdown">Indicator:
@@ -40,7 +40,7 @@
                           <option>
                             Choose your Indicator
                           </option>
-                           <option v-for="indicator of indicators" v-bind:value="v">{{indicator}}</option>
+                           <option v-for="indicator of indicators" v-bind:value="v">{{indicator.value}}</option>
                          </select>
                        </label>
                        <label for="yearDropdown">Year:
@@ -86,16 +86,25 @@
                          {{index + 1}}
                        </td>
                        <td>
-                         <a href="dataset.url">{{dataset.name}}</a>
+                         <a href="dataset.url">{{dataset.country.value}}</a>
                        </td>
                        <td>
-                         {{dataset.indicator}}
+                         {{dataset.indicator.value}}
                        </td>
                        <td>
-                         {{dataset.year}}
+                         {{dataset.date}}
                        </td>
                       </tr>
                     </table>
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
               </div>
