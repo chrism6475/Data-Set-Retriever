@@ -7,11 +7,23 @@ button[disabled] {
 .box-margin {
   margin: 10px;
 }
-
+.navbar-margin{
+  margin-top:20px;
+  margin-bottom:20px
+}
 .hide {
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
   position: absolute !important;
   width: 1px;
+}
+.centered {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+}
+body{
+  background-image: url('../images/world bank.jpg');
+  background-color: gray;
 }

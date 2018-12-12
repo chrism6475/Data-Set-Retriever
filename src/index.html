@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="assets/css/index.css" />
   </head>
   <body>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">World Bank Development Survey Data Retriever Tool</a>
+    <div class="container text-center justify-content-center">
+      <nav class="navbar navbar-dark bg-info navbar-margin">
+        <a class="navbar-brand" align-text="center" href="#">World Bank Development Survey Data Retriever Tool</a>
       </nav>
-      <div class="row" style="margin:5px">
+      <div class="row justify-content-center" style="opacity: .9">
         <div class="col-md-12">
           <div class="card" id="searchCriteriaForm">
-            <div class="card-body">
+            <div class="card-body text-black">
               <div class="row box-margin">
                 <div class="col-md-12">
                   <form>
@@ -51,13 +51,9 @@
                             <option v-for="i in (1967,2018)" v-bind:value="yearOption">{{i}}</option>
                           </select>
                         </label>
+                        <button class="btn btn-outline-info" type="submit" v-on:click="searchForDataSet">Search</button>
                      </form>
                   </div>
-              </div>
-              <div class="row box-margin">
-                <div class="col-md-3 offset-md-9">
-                  <button class="btn btn-outline-primary" type="submit" v-on:click="searchForDataSet">Search</button>
-                </div>
               </div>
               <div class="row box-margin" v-show="noResults == true">
                 <div class="col-md-12">
@@ -96,8 +92,8 @@
                        </td>
                       </tr>
                     </table>
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination">
+                    <nav class="text-center text-info" >
+                      <ul class="pagination  justify-content-center text-info">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>

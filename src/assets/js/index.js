@@ -14,8 +14,8 @@ var dataSetSearch = new Vue({
       resultsInfo: []
   },
   mounted() {
-      axios.get('./assets/json/countries.json').then(response => this.countries = response.data);
-      axios.get('./assets/json/indicators.json').then(response => this.indicators = response.data);
+    axios.get('./assets/json/countries.json').then(response => this.countries = response.data);
+    axios.get('./assets/json/indicators.json').then(response => this.indicators = response.data);
 
   },
 
