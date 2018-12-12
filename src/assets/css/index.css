@@ -1,29 +1,32 @@
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+body{
+  background-image: url('../images/world bank.jpg');
+  background-color: gray;
+}
+
 
 button[disabled] {
   cursor: not-allowed;
   opacity: .5;
 }
+.navbar-thin{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .box-margin {
   margin: 10px;
+}
+.header{
+  .font-size: 40px;
+  color: white;
+  font-weight: 100;
 }
 .navbar-margin{
   margin-top:20px;
   margin-bottom:20px
 }
-.hide {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  width: 1px;
-}
 .centered {
   position: fixed; /* or absolute */
   top: 50%;
   left: 50%;
-}
-body{
-  background-image: url('../images/world bank.jpg');
-  background-color: gray;
 }

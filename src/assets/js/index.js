@@ -1,4 +1,17 @@
 const BASE_URL = 'http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?date=2000:2001';
+var header = new Vue({
+  el: "#headerBar",
+  data:{
+    source: 'World Bank',
+    availableSources : ['World Bank', 'IMF']
+  },
+  methods: {
+    changeSource: function(source){
+      this.source = this.availableSources[source];
+    }
+  }
+});
+
 var dataSetSearch = new Vue({
   el: '#searchCriteriaForm',
   data:{
