@@ -1,0 +1,8 @@
+[
+  {name: 'Mobile Cellular Subscriptions', code: 'IT.CEL.SETS.P2'},
+  {name: 'Poverty Gag at national poverty lines', code: 'SI.POV.NAGP'},
+  {name: 'Children in employment, female ages 7-14', code: 'SL.TLF.0714.FE.ZS'},
+  {name: 'Prevalence of HIV (male)', code: 'SH.HIV.1524.MA.ZS'},
+  {name: 'Prevalence of HIV (female)', code: 'SH.HIV.1524.FE.ZS'},
+  {name: 'Birth Rate Crude', code: 'SP.DYN.CBRT.IN'}
+]
