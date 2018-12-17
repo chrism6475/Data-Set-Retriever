@@ -10,7 +10,8 @@ const routerOptions = [
 const routes = routerOptions.map(route => {
   return {
     ...route,
-    component: () => import(`@/components/${route.component}.vue`)
+    component: () => import(`@/components/${route.component}.vue`),
+    image: require('../assets/images/world-bank.jpg')
   }
 })
 Vue.use(Router)

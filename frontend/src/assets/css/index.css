@@ -1,5 +1,5 @@
 body{
-  background-image: url('../images/world bank.jpg');
+  background-image: url('~@/assets/images/world-bank.jpg');
   background-color: gray;
 }
 

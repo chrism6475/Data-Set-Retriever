@@ -1,5 +1,5 @@
 <template>
-<div class="container text-center justify-content-center">
+<div class="container text-center justify-content-center" v-bind:style="{ 'background-image': 'url(' + image + ')' }">
   <h1 class="header">
     World Data Index
   </h1>
@@ -28,7 +28,7 @@
                      <option value="all">
                        All
                      </option>
-                      <option v-for="country of countries" v-bind:key="country" v-bind:value="countryOption">{{country.name}}</option>
+                      <option v-for="(value, key) of countries" v-bind:key="key" v-bind:value="countryOption">{{value}}</option>
                     </select>
                   </label>
                   <label for="indicatorDropdown">Indicator:
@@ -44,7 +44,7 @@
                        <option>
                          Choose your Year
                        </option>
-                        <option v-for="i in (1967,2018)" v-bind:key="i" v-bind:value="yearOption">{{i}}</option>
+                        <option v-for="year in years" v-bind:key="year" v-bind:value="yearOption">{{year}}</option>
                       </select>
                     </label>
                     <button class="btn btn-outline-info" type="submit" v-on:click="searchForDataSet">Search</button>
@@ -111,12 +111,14 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      image: require('../assets/images/world-bank.jpg'),
       source: 'World Bank',
       availableSources: ['World Bank', 'IMF'],
       noResults: false,
       searchText: '',
       countryOption: '',
       yearOption: '',
+      years: [],
       results: [],
       indicatorOption: '',
       countries: [],
@@ -144,7 +146,8 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://country.io/names.json').then(response => (this.countries = response.data))
+    this.years = Array.from({length: 50}, (v, k) => k + 1967)
+    axios.get('http://localhost:5000/countries').then(response => (this.countries = response.data))
     axios.get('http://localhost:5000/indicators').then(response => (this.indicators = response.data))
   }
 }
