@@ -8,10 +8,9 @@
     </a>
     <div class="dropdown-menu">
       <ul class="list-unstyled">
-        <li v-for="(source, index) of availableSources" v-on:click=changeSource(index)>{{source}}</li>
+        <li v-for="(source, index) of availableSources" v-bind:key="source" v-on:click=changeSource(index)>{{source}}</li>
       </ul>
     </div>
-
 
   </nav>
   <div class="row justify-content-center" style="opacity: .9">
@@ -29,7 +28,7 @@
                      <option value="all">
                        All
                      </option>
-                      <option v-for="country of countries" v-bind:value="countryOption">{{country.name}}</option>
+                      <option v-for="country of countries" v-bind:key="country" v-bind:value="countryOption">{{country.name}}</option>
                     </select>
                   </label>
                   <label for="indicatorDropdown">Indicator:
@@ -37,7 +36,7 @@
                       <option>
                         Choose your Indicator
                       </option>
-                       <option v-for="indicator of indicators" v-bind:value="indicatorOption">{{indicator.name}}</option>
+                       <option v-for="indicator of indicators" v-bind:key="indicator" v-bind:value="indicatorOption">{{indicator.name}}</option>
                      </select>
                    </label>
                    <label for="yearDropdown">Year:
@@ -45,7 +44,7 @@
                        <option>
                          Choose your Year
                        </option>
-                        <option v-for="i in (1967,2018)" v-bind:value="yearOption">{{i}}</option>
+                        <option v-for="i in (1967,2018)" v-bind:key="i" v-bind:value="yearOption">{{i}}</option>
                       </select>
                     </label>
                     <button class="btn btn-outline-info" type="submit" v-on:click="searchForDataSet">Search</button>
@@ -74,7 +73,7 @@
                   <th>
                    Year
                   </th>
-                  <tr v-for="(dataset, index) in results">
+                  <tr v-for="(dataset, index) in results" v-bind:key="dataset">
                    <td>
                      {{index + 1}}
                    </td>
@@ -113,40 +112,40 @@ export default {
   data () {
     return {
       source: 'World Bank',
-      availableSources : ['World Bank', 'IMF'],
+      availableSources: ['World Bank', 'IMF'],
       noResults: false,
       searchText: '',
       countryOption: '',
       yearOption: '',
-      test: "test",
-      results:[],
+      results: [],
       indicatorOption: '',
       countries: [],
       indicators: [],
-      resultsInfo: []
+      resultsInfo: [],
+      errors: []
     }
   },
   methods: {
-    changeSource: function(source){
+    changeSource: function (source) {
       this.source = this.availableSources[source]
     },
-    searchForDataSet: function(){
+    searchForDataSet: function () {
       this.results = []
       axios
-      .get("http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?format=json")
-      .then(response => {
-        this.resultsInfo = response.data[0]
-        this.results = response.data[1]
-        console.log(this.results)
-      })
-      .catch(error => console.log('error') )
-
+        .get('http://api.worldbank.org/v2/countries/all/indicators/SP.POP.TOTL?format=json')
+        .then(response => {
+          this.resultsInfo = response.data[0]
+          this.results = response.data[1]
+        })
+        .catch(error => {
+          console.log('error')
+          this.errors.push(error)
+        })
     }
   },
   mounted () {
-    axios.get('http://country.io/names.json').then(response => this.countries = response.data)
-    axios.get('http://localhost:5000/indicators').then(response => this.indicators = response.data)
-
+    axios.get('http://country.io/names.json').then(response => (this.countries = response.data))
+    axios.get('http://localhost:5000/indicators').then(response => (this.indicators = response.data))
   }
 }
 </script>
